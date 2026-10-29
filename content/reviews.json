@@ -1,0 +1,9 @@
+{
+  "quoteCards": [],
+  "emptyState": {
+    "title": "Be the first.",
+    "description": "We are onboarding early alpha testers who enjoy taking apart complex codebases. If you test Canopy on a non-trivial JS/TS project, share your honest technical feedback—warts, edge cases, and all.",
+    "ctaText": "Join the Early Alpha",
+    "ctaHref": "/community"
+  }
+}

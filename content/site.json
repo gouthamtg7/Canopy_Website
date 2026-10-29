@@ -1,0 +1,73 @@
+{
+  "name": "Canopy",
+  "engineName": "canopy-engine",
+  "tagline": "See how your code actually works.",
+  "subline": "Canopy turns a JavaScript or TypeScript repo into a clickable map of its workflows, built from the code itself, on your computer, with the gaps shown honestly.",
+  "installCommand": "npm install -g canopy-engine",
+  "runCommand": "canopy",
+  "noInstallCommand": "npx -y canopy-engine@latest",
+  "nodeRequirement": "Node.js 18+",
+  "releaseChannel": "public beta",
+  "version": null,
+  "versionSource": "https://registry.npmjs.org/canopy-engine/latest",
+  "githubRepo": null,
+  "discordUrl": null,
+  "npmUrl": "https://www.npmjs.com/package/canopy-engine",
+  "contactEmail": "canopy.spillitlabs@gmail.com",
+  "trustParagraph": "Canopy runs on your computer. Your code is never sent anywhere by Canopy. The only network use is an update check and a small daily ping (a random install id, version, OS family, Node version, date), which you can turn off any time with canopy telemetry off, CANOPY_TELEMETRY=0 or DO_NOT_TRACK=1. Ask AI runs your own AI tool under your own login.",
+  "nav": [
+    { "label": "Docs", "href": "/docs/quickstart" },
+    { "label": "Benchmarks", "href": "/benchmarks" },
+    { "label": "Golden Standard Test", "href": "/gst" },
+    { "label": "Reviews", "href": "/reviews" },
+    { "label": "Community", "href": "/community" },
+    { "label": "Changelog", "href": "/changelog" }
+  ],
+  "footer": {
+    "sections": [
+      {
+        "title": "Product",
+        "links": [
+          { "label": "Quickstart", "href": "/docs/quickstart" },
+          { "label": "Concepts", "href": "/docs/concepts" },
+          { "label": "Ask AI & MCP", "href": "/docs/mcp" },
+          { "label": "CLI Reference", "href": "/docs/cli-reference" },
+          { "label": "Known Limitations", "href": "/docs/known-limitations" }
+        ]
+      },
+      {
+        "title": "Transparency & Proof",
+        "links": [
+          { "label": "Speed Benchmarks", "href": "/benchmarks" },
+          { "label": "Golden Standard Test", "href": "/gst" },
+          { "label": "Verified Claims", "href": "/claims" },
+          { "label": "Early Reviews", "href": "/reviews" }
+        ]
+      },
+      {
+        "title": "Ecosystem & Legal",
+        "links": [
+          { "label": "Community & Waitlist", "href": "/community" },
+          { "label": "Changelog", "href": "/changelog" },
+          { "label": "Privacy Policy", "href": "/privacy" },
+          { "label": "License", "href": "/license" },
+          { "label": "Third-Party Notices", "href": "/third-party-notices" }
+        ]
+      }
+    ],
+    "copyright": "Copyright 2026 Canopy Engine."
+  },
+  "social": {
+    "github": null,
+    "discord": null,
+    "whatsapp": null,
+    "booking": null
+  },
+  "earlyAccess": "Canopy is in public beta (0.1.x). Free for personal, educational and evaluation use. JavaScript and TypeScript only. Mainly tested on Windows. Teams features (shared maps, PR checks) are on a waitlist, not available yet.",
+  "bookingFormFields": [
+    "JS/TS use (yes/no)",
+    "Role (working professional or other)",
+    "Repository size bucket",
+    "Operating system"
+  ]
+}

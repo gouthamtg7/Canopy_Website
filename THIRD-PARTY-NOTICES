@@ -1,0 +1,41 @@
+# Canopy Website - Third-Party Notices & Licenses
+
+This document records the third-party open-source software libraries and tools used in the Canopy marketing and documentation platform (`C:\Canopy_Website`). Every dependency adheres strictly to permissive open-source licenses (MIT, Apache-2.0, BSD-2/3-Clause, or ISC).
+
+---
+
+## Backend (`/server`)
+
+| Package | License | Purpose |
+|---|---|---|
+| `express` | MIT | HTTP web application server framework |
+| `helmet` | MIT | Security HTTP headers middleware |
+| `cors` | MIT | Cross-Origin Resource Sharing middleware |
+| `express-rate-limit` | MIT | Rate limiting middleware for DDoS & abuse prevention |
+| `mongoose` | MIT | MongoDB object modeling and schema validation |
+| `zod` | MIT | TypeScript-first schema declaration and validation |
+| `dotenv` | BSD-2-Clause | Environment variable loader |
+| `compression` | MIT | Response compression middleware |
+| `morgan` | MIT | HTTP request logging |
+
+---
+
+## Frontend (`/client`)
+
+| Package | License | Purpose |
+|---|---|---|
+| `react` | MIT | User interface rendering engine |
+| `react-dom` | MIT | React Document Object Model bindings |
+| `react-router-dom` | MIT | Client-side routing and navigation |
+| `lucide-react` | ISC | Lightweight open-source icon set |
+| `clsx` | MIT | Utility for constructing `className` strings conditionally |
+| `tailwind-merge` | MIT | Utility to merge Tailwind CSS classes safely |
+| `tailwindcss` | MIT | Utility-first CSS framework |
+| `postcss` | MIT | Tool for transforming CSS with JavaScript |
+| `autoprefixer` | MIT | PostCSS plugin to parse CSS and add vendor prefixes |
+| `vite` | MIT | Next-generation frontend build tooling |
+
+---
+
+## Permissive Licensing Declaration
+No copyleft (GPL, AGPL, LGPL), proprietary, or non-commercial licenses are included in this project distribution.

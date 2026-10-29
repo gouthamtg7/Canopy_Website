@@ -1,0 +1,43 @@
+{
+  "testSuite": {
+    "name": "Canopy Golden Standard Test (GST) Suite",
+    "version": "1.0.0",
+    "status": "results pending",
+    "purpose": "Evaluate predicted workflows against founder-reviewed repository ground truth.",
+    "methodology": {
+      "questionCount": 8,
+      "scoreScale": "0/1/2 per question",
+      "categories": [
+        "Authentication and authorization flow",
+        "Primary database write pipeline and transaction boundary",
+        "Third-party API webhook ingestion path",
+        "State management or cache invalidation trigger",
+        "Background job or queue dispatch mechanism",
+        "Route-to-schema validation middleware chain",
+        "Error handling and centralized logging propagation",
+        "Component dependency boundary and dead-code isolation"
+      ],
+      "protocol": [
+        "Pin each repository to its recorded commit.",
+        "Ask the eight fixed questions with a fresh context.",
+        "Store the supporting map references in that repository's evidence folder.",
+        "Use provider-reported token counts.",
+        "Review answers against repository ground truth.",
+        "Report token reduction only against a measured no-Canopy baseline."
+      ],
+      "evidenceRoot": "evidence/gst"
+    }
+  },
+  "repositories": [
+    { "id": "proshop-v2", "repo": "bradtraversy/proshop-v2", "displayName": "proshop-v2", "commit": null, "status": "results pending", "accuracyScore": null, "tokensWithoutCanopy": null, "tokensWithCanopy": null, "tokenReduction": null, "verifiedDate": null, "evidencePath": "evidence/gst/proshop-v2", "questions": [] },
+    { "id": "node-express-realworld-example-app", "repo": "gothinkster/node-express-realworld-example-app", "displayName": "node-express-realworld-example-app", "commit": null, "status": "results pending", "accuracyScore": null, "tokensWithoutCanopy": null, "tokensWithCanopy": null, "tokenReduction": null, "verifiedDate": null, "evidencePath": "evidence/gst/node-express-realworld-example-app", "questions": [] },
+    { "id": "nestjs-realworld-example-app", "repo": "lujakmert/nestjs-realworld-example-app", "displayName": "nestjs-realworld-example-app", "commit": null, "status": "results pending", "accuracyScore": null, "tokensWithoutCanopy": null, "tokensWithCanopy": null, "tokenReduction": null, "verifiedDate": null, "evidencePath": "evidence/gst/nestjs-realworld-example-app", "questions": [] },
+    { "id": "formbricks", "repo": "formbricks/formbricks", "displayName": "formbricks", "commit": null, "status": "results pending", "accuracyScore": null, "tokensWithoutCanopy": null, "tokensWithCanopy": null, "tokenReduction": null, "verifiedDate": null, "evidencePath": "evidence/gst/formbricks", "questions": [] },
+    { "id": "documenso", "repo": "documenso/documenso", "displayName": "documenso", "commit": null, "status": "results pending", "accuracyScore": null, "tokensWithoutCanopy": null, "tokensWithCanopy": null, "tokenReduction": null, "verifiedDate": null, "evidencePath": "evidence/gst/documenso", "questions": [] },
+    { "id": "dub", "repo": "dubinc/dub", "displayName": "dub", "commit": null, "status": "results pending", "accuracyScore": null, "tokensWithoutCanopy": null, "tokensWithCanopy": null, "tokenReduction": null, "verifiedDate": null, "evidencePath": "evidence/gst/dub", "questions": [] },
+    { "id": "outline", "repo": "outline/outline", "displayName": "outline", "commit": null, "status": "results pending", "accuracyScore": null, "tokensWithoutCanopy": null, "tokensWithCanopy": null, "tokenReduction": null, "verifiedDate": null, "evidencePath": "evidence/gst/outline", "questions": [] },
+    { "id": "vercel-commerce", "repo": "vercel/commerce", "displayName": "vercel/commerce", "commit": null, "status": "results pending", "accuracyScore": null, "tokensWithoutCanopy": null, "tokensWithCanopy": null, "tokenReduction": null, "verifiedDate": null, "evidencePath": "evidence/gst/vercel-commerce", "questions": [] },
+    { "id": "twenty", "repo": "twentyhq/twenty", "displayName": "twenty", "commit": null, "status": "results pending", "accuracyScore": null, "tokensWithoutCanopy": null, "tokensWithCanopy": null, "tokenReduction": null, "verifiedDate": null, "evidencePath": "evidence/gst/twenty", "questions": [] },
+    { "id": "excalidraw", "repo": "excalidraw/excalidraw", "displayName": "excalidraw", "commit": null, "status": "results pending", "accuracyScore": null, "tokensWithoutCanopy": null, "tokensWithCanopy": null, "tokenReduction": null, "verifiedDate": null, "evidencePath": "evidence/gst/excalidraw", "questions": [] }
+  ]
+}
