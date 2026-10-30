@@ -32,7 +32,7 @@ export function createApp() {
         callback(Object.assign(new Error('Blocked by CORS policy'), { status: 403 }));
       },
       methods: ['GET', 'POST', 'OPTIONS'],
-      allowedHeaders: ['Content-Type', 'Authorization'],
+      allowedHeaders: ['Content-Type', 'Authorization', 'Idempotency-Key'],
       credentials: false,
     })
   );

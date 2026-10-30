@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Users, Sparkles, Send, CheckCircle2, AlertCircle, ExternalLink, ShieldCheck, Building2, MessageSquare } from 'lucide-react';
 
 export function CommunityPage() {
@@ -38,6 +38,21 @@ export function CommunityPage() {
     canopyVersion: '0.1.x',
   });
   const [feedbackStatus, setFeedbackStatus] = useState({ loading: false, success: null, error: null });
+  const idempotencyKeys = useRef({});
+
+  const getIdempotencyKey = (formName) => {
+    if (!idempotencyKeys.current[formName]) {
+      if (!globalThis.crypto?.randomUUID) {
+        throw new Error('This browser cannot create a safe retry key. Please update your browser and try again.');
+      }
+      idempotencyKeys.current[formName] = globalThis.crypto.randomUUID();
+    }
+    return idempotencyKeys.current[formName];
+  };
+
+  const clearIdempotencyKey = (formName) => {
+    delete idempotencyKeys.current[formName];
+  };
 
   const techOptions = [
     'TypeScript',
@@ -69,9 +84,10 @@ export function CommunityPage() {
     setEarlyTesterStatus({ loading: true, success: null, error: null });
 
     try {
+      const idempotencyKey = getIdempotencyKey('early-testers');
       const res = await fetch('/api/waitlist/early-testers', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Idempotency-Key': idempotencyKey },
         body: JSON.stringify(earlyTesterForm),
       });
       const data = await res.json();
@@ -82,6 +98,7 @@ export function CommunityPage() {
         success: data.message || 'Application received! Welcome to the Canopy early-testers pool.',
         error: null,
       });
+      clearIdempotencyKey('early-testers');
     } catch (err) {
       setEarlyTesterStatus({ loading: false, success: null, error: err.message });
     }
@@ -92,9 +109,10 @@ export function CommunityPage() {
     setTeamsStatus({ loading: true, success: null, error: null });
 
     try {
+      const idempotencyKey = getIdempotencyKey('teams');
       const res = await fetch('/api/waitlist/teams', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Idempotency-Key': idempotencyKey },
         body: JSON.stringify(teamsForm),
       });
       const data = await res.json();
@@ -105,6 +123,7 @@ export function CommunityPage() {
         success: data.message || 'Your team has been placed on the priority waitlist.',
         error: null,
       });
+      clearIdempotencyKey('teams');
     } catch (err) {
       setTeamsStatus({ loading: false, success: null, error: err.message });
     }
@@ -115,9 +134,10 @@ export function CommunityPage() {
     setFeedbackStatus({ loading: true, success: null, error: null });
 
     try {
+      const idempotencyKey = getIdempotencyKey('feedback');
       const res = await fetch('/api/feedback', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Idempotency-Key': idempotencyKey },
         body: JSON.stringify(feedbackForm),
       });
       const data = await res.json();
@@ -128,6 +148,7 @@ export function CommunityPage() {
         success: data.message || 'Thank you! Your feedback has been recorded.',
         error: null,
       });
+      clearIdempotencyKey('feedback');
       setFeedbackForm((prev) => ({ ...prev, title: '', message: '', repoUrl: '' }));
     } catch (err) {
       setFeedbackStatus({ loading: false, success: null, error: err.message });
