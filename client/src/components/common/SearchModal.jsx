@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, X, ArrowRight, FileText, CornerDownLeft } from 'lucide-react';
+import { copyText } from './clipboard';
 
 export function SearchModal({ isOpen, onClose }) {
   const [error, setError] = useState(null);
@@ -8,8 +9,15 @@ export function SearchModal({ isOpen, onClose }) {
   const [query, setQuery] = useState('');
   const [docs, setDocs] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [copied, setCopied] = useState(false);
   const inputRef = useRef(null);
   const navigate = useNavigate();
+  const commands = [
+    { label: 'Open quickstart', description: 'Read the installation guide', href: '/docs/quickstart', shortcut: 'G then Q' },
+    { label: 'View benchmarks', description: 'Inspect measured repository performance', href: '/benchmarks', shortcut: 'G then B' },
+    { label: 'Join the community', description: 'Apply for early testing or submit feedback', href: '/community', shortcut: 'G then C' },
+  ];
+  const installCommand = 'npm install -g canopy-engine';
 
   // Fetch docs index on open
   useEffect(() => {
@@ -41,6 +49,13 @@ export function SearchModal({ isOpen, onClose }) {
       doc.slug.toLowerCase().includes(q) || (doc.searchText || '').toLowerCase().includes(q)
     );
   });
+  const filteredCommands = commands.filter((command) => {
+    if (!query.trim()) return true;
+    const q = query.toLowerCase();
+    return `${command.label} ${command.description}`.toLowerCase().includes(q);
+  });
+  const installAvailable = installCommand.includes(query.trim());
+  const resultCount = filteredCommands.length + filteredDocs.length + (installAvailable ? 1 : 0);
 
   const handleKeyDown = (e) => {
     if (e.key === 'Tab') {
@@ -52,14 +67,26 @@ export function SearchModal({ isOpen, onClose }) {
       onClose();
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();
-      setSelectedIndex((prev) => (prev + 1 < filteredDocs.length ? prev + 1 : prev));
+      setSelectedIndex((prev) => (prev + 1 < resultCount ? prev + 1 : prev));
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
       setSelectedIndex((prev) => (prev > 0 ? prev - 1 : 0));
     } else if (e.key === 'Enter') {
       e.preventDefault();
-      if (filteredDocs[selectedIndex]) {
-        navigate(`/docs/${filteredDocs[selectedIndex].slug}`);
+      const selectedCommand = filteredCommands[selectedIndex];
+      const docIndex = selectedIndex - filteredCommands.length - (installAvailable ? 1 : 0);
+      if (selectedCommand) {
+        navigate(selectedCommand.href);
+        onClose();
+      } else if (selectedIndex === filteredCommands.length && installCommand.includes(query.trim())) {
+        copyText(installCommand).then((success) => {
+          if (success) {
+            setCopied(true);
+            window.setTimeout(() => setCopied(false), 2000);
+          }
+        });
+      } else if (filteredDocs[docIndex]) {
+        navigate(`/docs/${filteredDocs[docIndex].slug}`);
         onClose();
       }
     }
@@ -73,7 +100,7 @@ export function SearchModal({ isOpen, onClose }) {
       onClick={onClose}
     >
       <div
-        ref={dialogRef} onKeyDown={handleKeyDown} role="dialog" aria-modal="true" aria-label="Search documentation" className="w-full max-w-xl bg-paper-cardLight dark:bg-paper-cardDark border border-borderLight dark:border-borderDark rounded-xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150"
+        ref={dialogRef} onKeyDown={handleKeyDown} role="dialog" aria-modal="true" aria-label="Command menu and documentation search" className="w-full max-w-xl bg-paper-cardLight dark:bg-paper-cardDark border border-borderLight dark:border-borderDark rounded-xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input Bar */}
@@ -87,7 +114,7 @@ export function SearchModal({ isOpen, onClose }) {
               setQuery(e.target.value);
               setSelectedIndex(0);
             }}
-            placeholder="Search documentation, guides, and concepts..."
+            placeholder="Search commands and documentation..."
             className="w-full bg-transparent text-sm text-ink-light dark:text-ink-dark placeholder-ink-mutedLight dark:placeholder-ink-mutedDark focus:outline-none"
           />
           <button
@@ -99,22 +126,77 @@ export function SearchModal({ isOpen, onClose }) {
         </div>
 
         {/* Results List */}
-        <div className="max-h-80 overflow-y-auto p-2">
-          {error ? <p role="alert" className="p-4">{error}</p> : filteredDocs.length === 0 ? (
+        <div className="max-h-96 overflow-y-auto p-2">
+          {error ? <p role="alert" className="p-4">{error}</p> : resultCount === 0 ? (
             <div className="py-8 text-center text-sm text-ink-mutedLight dark:text-ink-mutedDark">
               No matching documentation found for "{query}".
             </div>
           ) : (
-            filteredDocs.map((doc, idx) => (
+            <>
+              {(filteredCommands.length > 0 || installAvailable) && (
+                <div className="mb-2">
+                  <div className="px-3 py-2 text-[10px] uppercase tracking-wider font-mono text-ink-mutedLight dark:text-ink-mutedDark">Commands</div>
+                  {filteredCommands.map((command, idx) => (
+                    <button
+                      key={command.href}
+                      onClick={() => { navigate(command.href); onClose(); }}
+                      onMouseEnter={() => setSelectedIndex(idx)}
+                      className={`w-full flex items-center justify-between p-3 rounded-lg text-left text-sm transition-colors ${
+                        idx === selectedIndex
+                          ? 'bg-paper-subtleLight dark:bg-paper-subtleDark text-accent-blue dark:text-blue-400 font-medium'
+                          : 'text-ink-light dark:text-ink-dark hover:bg-paper-subtleLight/60 dark:hover:bg-paper-subtleDark/60'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3 min-w-0 pr-2">
+                        <ArrowRight className="w-4 h-4 shrink-0 text-accent-blue" />
+                        <div className="truncate">
+                          <div className="font-medium truncate">{command.label}</div>
+                          <div className="text-xs text-ink-mutedLight dark:text-ink-mutedDark truncate">{command.description}</div>
+                        </div>
+                      </div>
+                      <kbd className="shrink-0 px-1.5 py-0.5 text-[10px] font-mono rounded border border-borderLight dark:border-borderDark text-ink-mutedLight dark:text-ink-mutedDark">{command.shortcut}</kbd>
+                    </button>
+                  ))}
+                  {installAvailable && (
+                    <button
+                      onClick={async () => {
+                        if (await copyText(installCommand)) {
+                          setCopied(true);
+                          window.setTimeout(() => setCopied(false), 2000);
+                        }
+                      }}
+                      onMouseEnter={() => setSelectedIndex(filteredCommands.length)}
+                      className={`w-full flex items-center justify-between p-3 rounded-lg text-left text-sm transition-colors ${
+                        selectedIndex === filteredCommands.length
+                          ? 'bg-paper-subtleLight dark:bg-paper-subtleDark text-accent-blue dark:text-blue-400 font-medium'
+                          : 'text-ink-light dark:text-ink-dark hover:bg-paper-subtleLight/60 dark:hover:bg-paper-subtleDark/60'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <FileText className="w-4 h-4 shrink-0 text-accent-blue" />
+                        <div>
+                          <div className="font-medium">Copy install command</div>
+                          <div className="text-xs text-ink-mutedLight dark:text-ink-mutedDark font-mono">{installCommand}</div>
+                        </div>
+                      </div>
+                      <span className="text-xs text-accent-green">{copied ? 'Copied' : 'Copy'}</span>
+                    </button>
+                  )}
+                </div>
+              )}
+              {filteredDocs.length > 0 && (
+                <div>
+                  <div className="px-3 py-2 text-[10px] uppercase tracking-wider font-mono text-ink-mutedLight dark:text-ink-mutedDark">Documentation</div>
+                  {filteredDocs.map((doc, idx) => (
               <button
                 key={doc.slug}
                 onClick={() => {
                   navigate(`/docs/${doc.slug}`);
                   onClose();
                 }}
-                onMouseEnter={() => setSelectedIndex(idx)}
+                onMouseEnter={() => setSelectedIndex(filteredCommands.length + 1 + idx)}
                 className={`w-full flex items-center justify-between p-3 rounded-lg text-left text-sm transition-colors ${
-                  idx === selectedIndex
+                  filteredCommands.length + 1 + idx === selectedIndex
                     ? 'bg-paper-subtleLight dark:bg-paper-subtleDark text-accent-blue dark:text-blue-400 font-medium'
                     : 'text-ink-light dark:text-ink-dark hover:bg-paper-subtleLight/60 dark:hover:bg-paper-subtleDark/60'
                 }`}
@@ -130,7 +212,10 @@ export function SearchModal({ isOpen, onClose }) {
                 </div>
                 <ArrowRight className="w-4 h-4 shrink-0 opacity-60" />
               </button>
-            ))
+                  ))}
+                </div>
+              )}
+            </>
           )}
         </div>
 

@@ -20,7 +20,7 @@ export function Layout() {
         return;
       }
 
-      if (e.key === '/' && !e.ctrlKey && !e.metaKey) {
+      if ((e.key === 'k' && (e.ctrlKey || e.metaKey)) || (e.key === '/' && !e.ctrlKey && !e.metaKey)) {
         e.preventDefault();
         setIsSearchOpen(true);
       }
