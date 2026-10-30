@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { MessageSquare, ExternalLink, Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { LoadingSkeleton } from '../components/common/LoadingSkeleton';
 
 export function ReviewsPage() {
   const [reviewsData, setReviewsData] = useState({ quoteCards: [], emptyState: {} });
   const [loading, setLoading] = useState(true);
+  const [showSkeleton, setShowSkeleton] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const skeletonTimer = window.setTimeout(() => setShowSkeleton(true), 300);
     document.title = 'Reviews & Early Feedback - Canopy';
     fetch('/api/reviews')
       .then((res) => { if (!res.ok) throw new Error('Content is temporarily unavailable. Please try again.'); return res.json(); })
       .then((data) => setReviewsData(data))
       .catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
+      .finally(() => {
+        window.clearTimeout(skeletonTimer);
+        setLoading(false);
+      });
+    return () => window.clearTimeout(skeletonTimer);
   }, []);
 
   const hasReviews = reviewsData.quoteCards && reviewsData.quoteCards.length > 0;
@@ -36,7 +43,11 @@ export function ReviewsPage() {
         </p>
       </div>
 
-      {loading ? <p role="status">Loading…</p> : error ? null : !hasReviews ? (
+      {loading ? (
+        <div role="status" aria-live="polite">
+          {showSkeleton ? <LoadingSkeleton lines={5} /> : <p>Loading reviews...</p>}
+        </div>
+      ) : error ? null : !hasReviews ? (
         /* Empty state matching specification: "be the first" */
         <div className="max-w-2xl mx-auto my-12 p-10 rounded-2xl border border-dashed border-borderLight dark:border-borderDark bg-paper-cardLight/50 dark:bg-paper-cardDark/50 text-center">
           <div className="w-14 h-14 rounded-2xl bg-paper-subtleLight dark:bg-paper-subtleDark flex items-center justify-center text-accent-blue mx-auto mb-6 shadow-subtle">

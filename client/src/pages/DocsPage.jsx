@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { DocsSidebar } from '../components/docs/DocsSidebar';
 import { MarkdownRenderer } from '../components/docs/MarkdownRenderer';
+import { LoadingSkeleton } from '../components/common/LoadingSkeleton';
 import { ChevronRight, ArrowLeft, ArrowRight, Menu, X, ShieldAlert } from 'lucide-react';
 
 const DOC_ORDER = [
@@ -20,12 +21,14 @@ export function DocsPage() {
   const { slug = 'quickstart' } = useParams();
   const [doc, setDoc] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showSkeleton, setShowSkeleton] = useState(false);
   const [error, setError] = useState(null);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const controller = new AbortController();
+    const skeletonTimer = window.setTimeout(() => setShowSkeleton(true), 300);
     setLoading(true);
     setError(null);
 
@@ -45,10 +48,14 @@ export function DocsPage() {
       })
       .finally(() => {
         if (controller.signal.aborted) return;
+        window.clearTimeout(skeletonTimer);
         setLoading(false);
         window.scrollTo(0, 0);
       });
-    return () => controller.abort();
+    return () => {
+      controller.abort();
+      window.clearTimeout(skeletonTimer);
+    };
   }, [slug]);
 
   // Determine Prev / Next docs
@@ -103,11 +110,14 @@ export function DocsPage() {
           </nav>
 
           {loading ? (
-            <div className="py-20 text-center">
-              <div className="w-6 h-6 border-2 border-accent-blue border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
-              <p className="text-xs font-mono text-ink-mutedLight dark:text-ink-mutedDark">
-                Parsing markdown documentation...
-              </p>
+            <div className="py-8" role="status" aria-live="polite">
+              {showSkeleton ? (
+                <LoadingSkeleton lines={8} />
+              ) : (
+                <p className="text-xs font-mono text-ink-mutedLight dark:text-ink-mutedDark">
+                  Loading documentation...
+                </p>
+              )}
             </div>
           ) : error ? (
             <div className="p-8 rounded-xl border border-accent-redSoft dark:border-accent-redSoftDark bg-accent-redSoft/30 dark:bg-accent-redSoftDark/30 text-center">

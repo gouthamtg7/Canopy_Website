@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Zap, Cpu, HardDrive, Calendar, ArrowUpDown, Search, ShieldCheck, GitCommit } from 'lucide-react';
+import { LoadingSkeleton } from '../components/common/LoadingSkeleton';
 
 export function BenchmarksPage() {
   const [benchmarks, setBenchmarks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showSkeleton, setShowSkeleton] = useState(false);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('files');
   const [sortOrder, setSortOrder] = useState('asc');
 
   useEffect(() => {
+    const skeletonTimer = window.setTimeout(() => setShowSkeleton(true), 300);
     document.title = 'Speed Benchmarks (10 Repositories) - Canopy';
     fetch('/api/benchmarks')
       .then((res) => { if (!res.ok) throw new Error('Content is temporarily unavailable. Please try again.'); return res.json(); })
@@ -17,7 +20,11 @@ export function BenchmarksPage() {
         if (data && data.benchmarks) setBenchmarks(data.benchmarks);
       })
       .catch((err) => setError(err.message))
-      .finally(() => setLoading(false));
+      .finally(() => {
+        window.clearTimeout(skeletonTimer);
+        setLoading(false);
+      });
+    return () => window.clearTimeout(skeletonTimer);
   }, []);
 
   const handleSort = (field) => {
@@ -52,7 +59,11 @@ export function BenchmarksPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       
       {error && <p role="alert" className="mb-6 text-accent-red">{error}</p>}
-      {loading && <p role="status" className="mb-6">Loading…</p>}
+      {loading && (
+        <div className="mb-6" role="status" aria-live="polite">
+          {showSkeleton ? <LoadingSkeleton lines={4} /> : <p className="text-xs">Loading benchmarks...</p>}
+        </div>
+      )}
       {/* Page Header */}
       <div className="max-w-3xl mb-10">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 text-xs font-mono mb-3">
