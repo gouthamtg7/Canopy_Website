@@ -35,7 +35,7 @@ export function DocsSidebar({ activeSlug, onCloseMobile }) {
                   key={item.slug}
                   to={`/docs/${item.slug}`}
                   onClick={onCloseMobile}
-                  className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
+                  className={`flex items-center min-h-11 gap-2.5 px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
                     isActive
                       ? 'bg-accent-blueSoft text-accent-blue dark:bg-accent-blueSoftDark dark:text-blue-400 font-semibold'
                       : item.highlight

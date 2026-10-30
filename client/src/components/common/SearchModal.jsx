@@ -100,7 +100,7 @@ export function SearchModal({ isOpen, onClose }) {
       onClick={onClose}
     >
       <div
-        ref={dialogRef} onKeyDown={handleKeyDown} role="dialog" aria-modal="true" aria-label="Command menu and documentation search" className="w-full max-w-xl bg-paper-cardLight dark:bg-paper-cardDark border border-borderLight dark:border-borderDark rounded-xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150"
+        ref={dialogRef} onKeyDown={handleKeyDown} role="dialog" aria-modal="true" aria-label="Command menu and documentation search" className="w-full max-w-xl squircle bg-paper-cardLight dark:bg-paper-cardDark border border-borderLight dark:border-borderDark rounded-xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Search Input Bar */}
@@ -119,7 +119,7 @@ export function SearchModal({ isOpen, onClose }) {
           />
           <button
             onClick={onClose}
-            className="p-1 rounded text-ink-mutedLight hover:text-ink-light dark:hover:text-ink-dark"
+            className="min-w-11 min-h-11 flex items-center justify-center p-1 rounded text-ink-mutedLight hover:text-ink-light dark:hover:text-ink-dark"
           >
             <X className="w-4 h-4" />
           </button>

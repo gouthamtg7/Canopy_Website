@@ -11,6 +11,14 @@
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
   /* Accessible focus indicators */
   :focus-visible {
     outline: 2px solid #2563EB;
@@ -51,6 +59,24 @@ code, pre, kbd {
 
 :root { color-scheme: light; }
 :root.dark { color-scheme: dark; }
+
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@supports (corner-shape: squircle) {
+  .squircle {
+    corner-shape: squircle;
+  }
+}
 
 @supports (view-transition-name: root) {
   @view-transition {

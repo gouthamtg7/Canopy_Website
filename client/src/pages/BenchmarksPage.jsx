@@ -145,7 +145,7 @@ export function BenchmarksPage() {
 
       {/* Speed Table */}
       <div className="overflow-x-auto rounded-2xl border border-borderLight dark:border-borderDark bg-paper-cardLight dark:bg-paper-cardDark shadow-elevated">
-        <table className="w-full text-left text-xs border-collapse">
+        <table className="w-full text-left text-xs border-collapse tabular-nums">
           <thead>
             <tr className="bg-paper-subtleLight/70 dark:bg-paper-subtleDark/50 border-b border-borderLight dark:border-borderDark text-[11px] font-mono uppercase tracking-wider text-ink-mutedLight dark:text-ink-mutedDark">
               <th className="p-4 cursor-pointer hover:text-ink-light select-none" onClick={() => handleSort('name')}>

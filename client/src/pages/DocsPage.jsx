@@ -70,7 +70,7 @@ export function DocsPage() {
       <div className="md:hidden flex items-center justify-between pb-4 mb-6 border-b border-borderLight dark:border-borderDark">
         <button
           onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
-          className="inline-flex items-center gap-2 text-xs font-medium text-ink-light dark:text-ink-dark px-3 py-1.5 rounded-lg border border-borderLight dark:border-borderDark bg-paper-cardLight dark:bg-paper-cardDark"
+          className="inline-flex items-center min-h-11 gap-2 text-xs font-medium text-ink-light dark:text-ink-dark px-3 py-1.5 rounded-lg border border-borderLight dark:border-borderDark bg-paper-cardLight dark:bg-paper-cardDark"
         >
           {mobileSidebarOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           <span>Documentation Menu</span>
