@@ -51,3 +51,14 @@ code, pre, kbd {
 
 :root { color-scheme: light; }
 :root.dark { color-scheme: dark; }
+
+@supports (view-transition-name: root) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 180ms;
+  }
+}
