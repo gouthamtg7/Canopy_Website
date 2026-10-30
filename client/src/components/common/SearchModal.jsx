@@ -127,12 +127,14 @@ export function SearchModal({ isOpen, onClose }) {
 
         {/* Results List */}
         <div className="max-h-96 overflow-y-auto p-2">
-          {error ? <p role="alert" className="p-4">{error}</p> : resultCount === 0 ? (
-            <div className="py-8 text-center text-sm text-ink-mutedLight dark:text-ink-mutedDark">
-              No matching documentation found for "{query}".
-            </div>
-          ) : (
-            <>
+          <>
+            {error && <p role="alert" className="p-4">{error}</p>}
+            {resultCount === 0 ? (
+              <div className="py-8 text-center text-sm text-ink-mutedLight dark:text-ink-mutedDark">
+                No matching commands or documentation found for "{query}".
+              </div>
+            ) : (
+              <>
               {(filteredCommands.length > 0 || installAvailable) && (
                 <div className="mb-2">
                   <div className="px-3 py-2 text-[10px] uppercase tracking-wider font-mono text-ink-mutedLight dark:text-ink-mutedDark">Commands</div>
@@ -215,8 +217,9 @@ export function SearchModal({ isOpen, onClose }) {
                   ))}
                 </div>
               )}
-            </>
-          )}
+              </>
+            )}
+          </>
         </div>
 
         {/* Footer shortcuts */}
