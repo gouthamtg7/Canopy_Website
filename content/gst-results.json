@@ -1,6 +1,6 @@
 {
   "testSuite": {
-    "name": "Canopy Golden Standard Test (GST) Suite",
+    "name": "Zupra Golden Standard Test (GST) Suite",
     "version": "1.0.0",
     "status": "results pending",
     "purpose": "Evaluate predicted workflows against founder-reviewed repository ground truth.",
@@ -23,7 +23,7 @@
         "Store the supporting map references in that repository's evidence folder.",
         "Use provider-reported token counts.",
         "Review answers against repository ground truth.",
-        "Report token reduction only against a measured no-Canopy baseline."
+        "Report token reduction only against a measured no-Zupra baseline."
       ],
       "evidenceRoot": "evidence/gst"
     }

@@ -32,7 +32,7 @@ export class ErrorBoundary extends React.Component {
               Application Error
             </h2>
             <p className="text-sm text-ink-mutedLight dark:text-ink-mutedDark mb-6">
-              A rendering error occurred. The component tree has been caught safely to prevent application crash.
+              Something went wrong while showing this part of the page. Reloading usually fixes it.
             </p>
             {this.state.error?.message && (
               <pre className="text-xs bg-paper-subtleLight dark:bg-paper-subtleDark p-3 rounded text-left font-mono overflow-x-auto text-ink-mutedLight dark:text-ink-mutedDark mb-6 border border-borderLight dark:border-borderDark">

@@ -1,71 +1,53 @@
 /** @type {import('tailwindcss').Config} */
+// Every colour is a CSS variable (see src/index.css) derived from the product UI's warm-paper palette,
+// with a dark variant. Legacy token names (paper/ink/accent/border*) map onto the same variables so
+// older pages re-skin without edits.
+const v = (name) => `rgb(var(--${name}) / <alpha-value>)`;
+
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        paper: {
-          light: '#FBF9F5',
-          dark: '#121212',
-          cardLight: '#FFFFFF',
-          cardDark: '#1A1A1A',
-          subtleLight: '#F3EFEA',
-          subtleDark: '#222222',
-        },
-        ink: {
-          light: '#1C1C1C',
-          dark: '#E5E5E5',
-          mutedLight: '#6B7280',
-          mutedDark: '#9CA3AF',
-          faintLight: '#9CA3AF',
-          faintDark: '#6B7280',
-        },
+        bg: v('bg'),
+        surface: v('surface'),
+        sunk: v('sunk'),
+        line: v('line'),
+        fg: { DEFAULT: v('ink'), 2: v('ink-2'), 3: v('ink-3') },
+        brand: { DEFAULT: v('accent'), strong: v('accent-strong'), soft: v('accent-soft') },
+        sage: v('sage'),
+        clay: v('clay'),
+        plum: v('plum'),
+        // legacy names
+        paper: { light: v('bg'), dark: v('bg'), cardLight: v('surface'), cardDark: v('surface'), subtleLight: v('sunk'), subtleDark: v('sunk') },
+        ink: { light: v('ink'), dark: v('ink'), mutedLight: v('ink-2'), mutedDark: v('ink-2'), faintLight: v('ink-3'), faintDark: v('ink-3') },
         accent: {
-          blue: '#2563EB',
-          blueHover: '#1D4ED8',
-          blueSoft: '#EFF6FF',
-          blueSoftDark: '#1E293B',
-          green: '#16A34A',
-          greenSoft: '#F0FDF4',
-          greenSoftDark: '#143823',
-          red: '#DC2626',
-          redSoft: '#FEF2F2',
-          redSoftDark: '#3B1818',
-          amber: '#D97706',
-          amberSoft: '#FFFBEB',
-          amberSoftDark: '#362308',
+          blue: v('accent'), blueHover: v('accent-strong'), blueSoft: v('accent-soft'), blueSoftDark: v('accent-soft'),
+          green: v('sage'), greenSoft: v('sage-soft'), greenSoftDark: v('sage-soft'),
+          red: v('clay'), redSoft: v('clay-soft'), redSoftDark: v('clay-soft'),
+          amber: v('clay'), amberSoft: v('clay-soft'), amberSoftDark: v('clay-soft'),
         },
-        borderLight: '#E5E0D8',
-        borderDark: '#2A2A2A',
+        borderLight: v('line'),
+        borderDark: v('line'),
       },
       fontFamily: {
-        sans: [
-          'Inter',
-          '-apple-system',
-          'BlinkMacSystemFont',
-          'Segoe UI',
-          'Roboto',
-          'sans-serif',
-        ],
-        mono: [
-          'JetBrains Mono',
-          'ui-monospace',
-          'SFMono-Regular',
-          'Menlo',
-          'Monaco',
-          'Consolas',
-          'monospace',
-        ],
+        sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', '"SF Pro Text"', '"Segoe UI Variable Text"', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+        display: ['system-ui', '-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"Segoe UI Variable Display"', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+        mono: ['ui-monospace', '"SF Mono"', '"Cascadia Mono"', '"JetBrains Mono"', 'Menlo', 'Consolas', 'monospace'],
       },
       boxShadow: {
-        'subtle': '0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05)',
-        'elevated': '0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06)',
+        subtle: '0 1px 1px rgba(40,35,20,.04), 0 1px 3px rgba(40,35,20,.06)',
+        elevated: '0 1px 2px rgba(40,35,20,.05), 0 4px 10px rgba(40,35,20,.07), 0 12px 28px rgba(40,35,20,.08)',
+        float: '0 2px 4px rgba(40,35,20,.05), 0 12px 24px rgba(40,35,20,.08), 0 40px 80px -20px rgba(40,35,20,.22)',
       },
+      transitionTimingFunction: {
+        out: 'cubic-bezier(0.2, 0.8, 0.2, 1)',
+        spring: 'cubic-bezier(0.34, 1.36, 0.64, 1)',
+        smooth: 'cubic-bezier(0.65, 0, 0.35, 1)',
+      },
+      maxWidth: { page: '72rem' },
     },
   },
   plugins: [],
-}
+};

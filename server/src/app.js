@@ -8,6 +8,7 @@ import morgan from 'morgan';
 import { router as apiRouter } from './routes/api.js';
 import { globalLimiter } from './middleware/rateLimiter.js';
 import { notFoundHandler, errorHandler } from './middleware/errorHandler.js';
+import { renderShell } from './seo.js';
 
 export function createApp() {
   const app = express();
@@ -16,7 +17,7 @@ export function createApp() {
   app.use(
     helmet({
       crossOriginResourcePolicy: { policy: 'cross-origin' },
-      contentSecurityPolicy: { directives: { scriptSrc: ["'self'"], styleSrc: ["'self'", "'unsafe-inline'"], imgSrc: ["'self'", 'data:'], connectSrc: ["'self'"], upgradeInsecureRequests: process.env.NODE_ENV === 'production' ? [] : null } },
+      contentSecurityPolicy: { directives: { scriptSrc: ["'self'"], styleSrc: ["'self'", "'unsafe-inline'"], imgSrc: ["'self'", 'data:', 'https://i.ytimg.com'], frameSrc: ['https://www.youtube-nocookie.com'], connectSrc: ["'self'"], upgradeInsecureRequests: process.env.NODE_ENV === 'production' ? [] : null } },
     })
   );
 
@@ -53,10 +54,11 @@ export function createApp() {
 
   if (process.env.NODE_ENV === 'production') {
     const dist = fileURLToPath(new URL('../../client/dist/', import.meta.url));
-    app.use(express.static(dist));
-    app.get('*', (req, res, next) => {
+    app.use(express.static(dist, { index: false }));
+    app.get('*', async (req, res, next) => {
       if (req.path === '/api' || req.path.startsWith('/api/')) return next();
-      res.sendFile(path.join(dist, 'index.html'));
+      if (/\.[a-z0-9]+$/i.test(req.path)) return next(); // a missing file is a 404, never the HTML shell
+      try { res.type('html').send(await renderShell(path.join(dist, 'index.html'), req.path)); } catch (error) { next(error); }
     });
   }
 

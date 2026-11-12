@@ -35,7 +35,7 @@ export async function getClaims(req, res, next) {
     const filePath = path.join(CONTENT_DIR, 'claims.md');
     const rawMarkdown = await fs.readFile(filePath, 'utf-8');
     res.json({
-      title: 'Canopy Verified Claims & Specifications',
+      title: 'Zupra Verified Claims & Specifications',
       raw: rawMarkdown,
       updatedAt: 'October 2026',
     });

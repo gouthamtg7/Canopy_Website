@@ -7,7 +7,7 @@ order: 3
 
 # Views and Changes
 
-Canopy provides multiple lenses to examine your codebase depending on the question you need to answer.
+Zupra provides multiple lenses to examine your codebase depending on the question you need to answer.
 
 ---
 
@@ -28,7 +28,7 @@ Focuses on UI components, React hooks, and shared client libraries, identifying 
 
 When refactoring or reviewing large pull requests, looking at raw unified diffs (`git diff`) doesn't show ripple effects across distant modules.
 
-Canopy integrates directly with git to compute visual diff maps:
+Zupra integrates directly with git to compute visual diff maps:
 
 ```bash
 # Compare working tree against main branch

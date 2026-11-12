@@ -8,7 +8,6 @@ export function GstPage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    document.title = 'Golden Standard Test (GST) - Canopy';
     fetch('/api/gst-results')
       .then((res) => { if (!res.ok) throw new Error('Content is temporarily unavailable. Please try again.'); return res.json(); })
       .then((data) => setGstData(data))
@@ -187,7 +186,7 @@ export function GstPage() {
                           {q.topic}
                         </div>
                         <div className="text-[10px] text-ink-mutedLight dark:text-ink-mutedDark flex justify-between">
-                          <span>With Canopy:</span>
+                          <span>With Zupra:</span>
                           <span className="text-accent-blue font-semibold">{q.canopyAssistedTokens} tok</span>
                         </div>
                         <div className="text-[10px] text-ink-mutedLight dark:text-ink-mutedDark flex justify-between">

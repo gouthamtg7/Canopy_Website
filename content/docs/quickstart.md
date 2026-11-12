@@ -1,13 +1,13 @@
 ---
 title: Quickstart
-description: Install Canopy and open a local workflow map.
+description: Install Zupra and open a local workflow map.
 slug: quickstart
 order: 1
 ---
 
 # Quickstart
 
-Canopy turns a JavaScript or TypeScript repository into a clickable map of its workflows. Analysis runs on your computer.
+Zupra turns a JavaScript or TypeScript repository into a clickable map of its workflows. Analysis runs on your computer.
 
 ## Requirements
 
@@ -22,13 +22,15 @@ npm install -g canopy-engine
 canopy
 ```
 
+The package is still called `canopy-engine` and the command is `canopy`. They will be renamed to zupra later; these commands keep working until then.
+
 To run without a global install:
 
 ```bash
 npx -y canopy-engine@latest
 ```
 
-Canopy scans supported source files, builds a local map, and opens the canvas. Vue and Svelte files are skipped and counted.
+Zupra scans supported source files, builds a local map, and opens the canvas. Vue and Svelte files are skipped and counted.
 
 ## Common options
 

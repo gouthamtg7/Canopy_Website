@@ -1,4 +1,5 @@
 import React from 'react';
+import { formHref } from '../../lib/brand';
 import { NavLink } from 'react-router-dom';
 import { BookOpen, ShieldAlert, Cpu, Terminal, Compass, Layers, Bot, HelpCircle, Shield } from 'lucide-react';
 
@@ -53,18 +54,18 @@ export function DocsSidebar({ activeSlug, onCloseMobile }) {
 
         <div className="p-4 rounded-xl border border-borderLight dark:border-borderDark bg-paper-subtleLight/60 dark:bg-paper-subtleDark/40 text-xs">
           <div className="font-semibold text-ink-light dark:text-ink-dark mb-1">
-            Need Live Help?
+            Something wrong or missing?
           </div>
           <p className="text-[11px] text-ink-mutedLight dark:text-ink-mutedDark mb-3">
-            Join the developer Discord to discuss AST rules or report unexpected edge cases.
+            Tell us what the map got wrong on your repo, or what the docs left out.
           </p>
           <a
-            href="https://discord.gg/canopy-engine"
+            href={formHref('feedback')}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-[11px] font-medium text-accent-blue hover:underline"
           >
-            <span>Canopy Discord →</span>
+            <span>Send feedback →</span>
           </a>
         </div>
 

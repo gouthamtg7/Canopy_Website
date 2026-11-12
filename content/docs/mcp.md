@@ -1,13 +1,13 @@
 ---
 title: MCP Server Integration
-description: Connect Claude Code to the local Canopy workflow map.
+description: Connect Claude Code to the local Zupra workflow map.
 slug: mcp
 order: 5
 ---
 
 # MCP Server Integration
 
-Canopy provides a local Model Context Protocol server for Claude Code.
+Zupra provides a local Model Context Protocol server for Claude Code.
 
 ## Setup
 

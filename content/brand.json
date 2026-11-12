@@ -1,0 +1,80 @@
+{
+  "name": "Zupra",
+  "domain": "zupra.dev",
+  "url": "https://zupra.dev",
+  "tagline": "Understand it. Change it. Know what changed.",
+  "description": "Zupra maps your JavaScript or TypeScript repo on your own machine, so you and your AI agent can understand it, change it, and see exactly what changed.",
+  "productUiName": "Canopy",
+  "packageName": "canopy-engine",
+  "installCommand": "npm install -g canopy-engine",
+  "runCommand": "canopy",
+  "noInstallCommand": "npx -y canopy-engine@latest",
+  "nodeRequirement": "Node.js 18+",
+  "renameNote": "The package is still called canopy-engine. It will be renamed to zupra later; the commands above keep working until then.",
+  "privacyLine": "Your code stays on your machine. Ask AI and Edit run through your own Claude Code login. We never see your credentials or your code.",
+  "scopeLine": "JavaScript and TypeScript only. Public beta.",
+  "contactEmail": "canopy.spillitlabs@gmail.com",
+  "forms": {
+    "feedback": "https://forms.gle/UX17FaE8HXLH8esB9",
+    "tester": null,
+    "teams": null
+  },
+  "links": {
+    "npm": "https://www.npmjs.com/package/canopy-engine",
+    "github": null,
+    "youtubeChannel": null,
+    "discord": null
+  },
+  "analytics": {
+    "plausibleDomain": null
+  },
+  "nav": [
+    { "label": "Walkthrough", "href": "/#demo" },
+    { "label": "Docs", "href": "/docs/quickstart" },
+    { "label": "Changelog", "href": "/changelog" }
+  ],
+  "footer": [
+    {
+      "title": "Product",
+      "links": [
+        { "label": "Quickstart", "href": "/docs/quickstart" },
+        { "label": "Concepts", "href": "/docs/concepts" },
+        { "label": "Ask AI & MCP", "href": "/docs/mcp" },
+        { "label": "CLI reference", "href": "/docs/cli-reference" },
+        { "label": "Known limitations", "href": "/docs/known-limitations" }
+      ]
+    },
+    {
+      "title": "Proof",
+      "links": [
+        { "label": "Benchmarks", "href": "/benchmarks" },
+        { "label": "Golden Standard Test", "href": "/gst" },
+        { "label": "Claims", "href": "/claims" },
+        { "label": "Reviews", "href": "/reviews" },
+        { "label": "Changelog", "href": "/changelog" }
+      ]
+    },
+    {
+      "title": "Company",
+      "links": [
+        { "label": "Feedback & testing", "href": "/community" },
+        { "label": "Privacy", "href": "/privacy" },
+        { "label": "License", "href": "/license" },
+        { "label": "Third-party notices", "href": "/third-party-notices" }
+      ]
+    }
+  ],
+  "pages": {
+    "/": { "title": "Zupra · Understand it. Change it. Know what changed.", "description": "A map of your JS/TS codebase, built on your machine. Understand what breaks before you touch it, change it through your own Claude Code, watch the agent live, and review every change on the map." },
+    "/docs/quickstart": { "title": "Quickstart · Zupra", "description": "Install Zupra and open the map of your JavaScript or TypeScript repo in a minute." },
+    "/benchmarks": { "title": "Benchmarks · Zupra", "description": "Measured Zupra runs on real repositories, with the testbed and every limitation written down." },
+    "/gst": { "title": "Golden Standard Test · Zupra", "description": "Ten repositories, eight fixed questions each. Results are published only when measured." },
+    "/reviews": { "title": "Reviews · Zupra", "description": "Real reviews from people who ran Zupra on their own code. We only publish real ones." },
+    "/community": { "title": "Feedback & testing · Zupra", "description": "Tell us how Zupra did on your repo, join early testing, or ask about Teams." },
+    "/changelog": { "title": "Changelog · Zupra", "description": "What changed in each Zupra release." },
+    "/claims": { "title": "Claims · Zupra", "description": "Every claim this site makes, written down in one place." },
+    "/privacy": { "title": "Privacy · Zupra", "description": "What Zupra sends over the network (very little) and how to turn it off." },
+    "/license": { "title": "License · Zupra", "description": "Zupra license terms for the public beta." },
+    "/third-party-notices": { "title": "Third-party notices · Zupra", "description": "Open-source components Zupra is built with." }
+  }
+}

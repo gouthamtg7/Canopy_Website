@@ -1,1 +1,1 @@
-try { const saved = localStorage.getItem('canopy-theme'); document.documentElement.classList.toggle('dark', saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches)); } catch {}
+try { var s = localStorage.getItem('canopy-theme'); document.documentElement.classList.toggle('dark', s === 'dark' || (!s && matchMedia('(prefers-color-scheme: dark)').matches)); document.documentElement.classList.add('js-reveal'); } catch (e) {}

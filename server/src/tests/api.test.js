@@ -21,7 +21,7 @@ async function request(path, options = {}) {
 }
 
 async function runTests() {
-  console.log('--- Starting Canopy API Test Suite ---');
+  console.log('--- Starting Zupra API Test Suite ---');
 
 
   server = http.createServer(app);
@@ -41,7 +41,7 @@ async function runTests() {
     console.log('[Test 2] GET /api/claims');
     const claims = await request('/api/claims');
     assert.equal(claims.status, 200);
-    assert.ok(claims.data.raw.includes('Canopy Claims'));
+    assert.ok(claims.data.raw.includes('Zupra Claims'));
     console.log('✓ Claims endpoint passed');
 
     // 3. Benchmarks endpoint
@@ -63,7 +63,7 @@ async function runTests() {
     console.log('[Test 5] GET /api/reviews');
     const reviews = await request('/api/reviews');
     assert.equal(reviews.status, 200);
-    assert.equal(reviews.data.emptyState.title, 'Be the first.');
+    assert.ok(Array.isArray(reviews.data.reviews));
     console.log('✓ Reviews endpoint passed');
 
     // 6. Docs List & Single Doc

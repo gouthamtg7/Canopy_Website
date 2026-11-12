@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { DocsSidebar } from '../components/docs/DocsSidebar';
 import { MarkdownRenderer } from '../components/docs/MarkdownRenderer';
 import { LoadingSkeleton } from '../components/common/LoadingSkeleton';
+import { applySeo } from '../lib/seo';
 import { ChevronRight, ArrowLeft, ArrowRight, Menu, X, ShieldAlert } from 'lucide-react';
 
 const DOC_ORDER = [
@@ -41,7 +42,7 @@ export function DocsPage() {
       })
       .then((data) => {
         setDoc(data);
-        document.title = `${data.title || slug} - Canopy Documentation`;
+        applySeo({ path: `/docs/${slug}`, title: `${data.title || slug} docs`, description: data.description });
       })
       .catch((err) => {
         if (!controller.signal.aborted) setError(err.message);
@@ -97,7 +98,7 @@ export function DocsPage() {
           {/* Breadcrumbs */}
           <nav className="flex items-center gap-2 text-xs text-ink-mutedLight dark:text-ink-mutedDark mb-6" aria-label="Breadcrumb">
             <Link to="/" className="hover:text-ink-light dark:hover:text-ink-dark transition-colors">
-              Canopy
+              Zupra
             </Link>
             <ChevronRight className="w-3.5 h-3.5" />
             <Link to="/docs/quickstart" className="hover:text-ink-light dark:hover:text-ink-dark transition-colors">

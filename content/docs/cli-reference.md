@@ -1,6 +1,6 @@
 ---
 title: CLI Reference
-description: Canopy commands, flags, cache paths, and exit codes.
+description: Zupra commands, flags, cache paths, and exit codes.
 slug: cli-reference
 order: 6
 ---

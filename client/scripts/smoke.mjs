@@ -2,7 +2,7 @@
 import { createServer } from 'vite';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-const vite = await createServer({ server: { middlewareMode: true }, appType: 'custom' });
+const vite = await createServer({ server: { middlewareMode: true }, appType: 'custom', ssr: { resolve: { externalConditions: ['module-sync'] } } });
 try {
   const { MarkdownRenderer } = await vite.ssrLoadModule('/src/components/docs/MarkdownRenderer.jsx');
   for (const payload of ['[bad](javascript:alert)', '[bad](data:text/html,evil)', '<img src=x onerror=alert(1)>']) {
@@ -12,7 +12,7 @@ try {
   const markdown = renderToString(React.createElement(MarkdownRenderer, { content: '# Guide\n\n```bash\nnpm i -g canopy-engine\n```\n\n| A | B |\n|---|---|\n| 1 | 2 |' }));
   assert.ok(markdown.includes('<table') && markdown.includes('Copy code to clipboard') && markdown.includes('npm i -g canopy-engine'));
   // Static rendering catches component/import failures; interactive browser QA is separate.
-  const { StaticRouter } = await import('react-router-dom/server.js');
+  const { StaticRouter } = await import('react-router-dom');
   for (const name of ['HomePage', 'DocsPage', 'BenchmarksPage', 'GstPage', 'ReviewsPage', 'CommunityPage']) {
     const module = await vite.ssrLoadModule(`/src/pages/${name}.jsx`);
     const html = renderToString(React.createElement(StaticRouter, { location: "/" }, React.createElement(module[name])));

@@ -13,7 +13,6 @@ export function BenchmarksPage() {
 
   useEffect(() => {
     const skeletonTimer = window.setTimeout(() => setShowSkeleton(true), 300);
-    document.title = 'Speed Benchmarks (10 Repositories) - Canopy';
     fetch('/api/benchmarks')
       .then((res) => { if (!res.ok) throw new Error('Content is temporarily unavailable. Please try again.'); return res.json(); })
       .then((data) => {

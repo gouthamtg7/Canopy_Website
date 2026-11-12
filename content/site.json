@@ -1,8 +1,8 @@
 {
-  "name": "Canopy",
+  "name": "Zupra",
   "engineName": "canopy-engine",
-  "tagline": "See how your code actually works.",
-  "subline": "Canopy turns a JavaScript or TypeScript repo into a clickable map of its workflows, built from the code itself, on your computer, with the gaps shown honestly.",
+  "tagline": "Understand it. Change it. Know what changed.",
+  "subline": "Zupra turns a JavaScript or TypeScript repo into a clickable map of its workflows, built from the code itself, on your computer, with the gaps shown honestly.",
   "installCommand": "npm install -g canopy-engine",
   "runCommand": "canopy",
   "noInstallCommand": "npx -y canopy-engine@latest",
@@ -14,7 +14,7 @@
   "discordUrl": null,
   "npmUrl": "https://www.npmjs.com/package/canopy-engine",
   "contactEmail": "canopy.spillitlabs@gmail.com",
-  "trustParagraph": "Canopy runs on your computer. Your code is never sent anywhere by Canopy. The only network use is an update check and a small daily ping (a random install id, version, OS family, Node version, date), which you can turn off any time with canopy telemetry off, CANOPY_TELEMETRY=0 or DO_NOT_TRACK=1. Ask AI runs your own AI tool under your own login.",
+  "trustParagraph": "Zupra runs on your computer. Your code is never sent anywhere by Zupra. The only network use is an update check and a small daily ping (a random install id, version, OS family, Node version, date), which you can turn off any time with canopy telemetry off, CANOPY_TELEMETRY=0 or DO_NOT_TRACK=1. Ask AI runs your own AI tool under your own login.",
   "nav": [
     { "label": "Docs", "href": "/docs/quickstart" },
     { "label": "Benchmarks", "href": "/benchmarks" },
@@ -55,7 +55,7 @@
         ]
       }
     ],
-    "copyright": "Copyright 2026 Canopy Engine."
+    "copyright": "Copyright 2026 Zupra Engine."
   },
   "social": {
     "github": null,
@@ -63,7 +63,7 @@
     "whatsapp": null,
     "booking": null
   },
-  "earlyAccess": "Canopy is in public beta (0.1.x). Free for personal, educational and evaluation use. JavaScript and TypeScript only. Mainly tested on Windows. Teams features (shared maps, PR checks) are on a waitlist, not available yet.",
+  "earlyAccess": "Zupra is in public beta (0.1.x). Free for personal, educational and evaluation use. JavaScript and TypeScript only. Mainly tested on Windows. Teams features (shared maps, PR checks) are on a waitlist, not available yet.",
   "bookingFormFields": [
     "JS/TS use (yes/no)",
     "Role (working professional or other)",

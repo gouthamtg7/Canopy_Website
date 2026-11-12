@@ -7,13 +7,13 @@ order: 8
 
 # Privacy and Telemetry
 
-Canopy runs on your computer. Your code is never sent anywhere by Canopy.
+Zupra runs on your computer. Your code is never sent anywhere by Zupra.
 
 ---
 
 ## 1. Absolute Local-First Guarantees
 
-1. **Source Code Stays Local**: Analysis runs in local Node.js processes. Canopy does not send source code anywhere.
+1. **Source Code Stays Local**: Analysis runs in local Node.js processes. Zupra does not send source code anywhere.
 2. **Store Lives Outside Your Repository**: Project caches use the platform paths documented in the CLI reference.
 3. **Your AI Login**: Ask AI runs your own AI tool under your own login. Claude Code is the supported provider.
 
@@ -46,4 +46,4 @@ export CANOPY_TELEMETRY=0
 ```bash
 export DO_NOT_TRACK=1
 ```
-Canopy honors the standard `DO_NOT_TRACK` environment variable.
+Zupra honors the standard `DO_NOT_TRACK` environment variable.

@@ -24,7 +24,7 @@ export async function submitEarlyTester(req, res, next) {
       return res.status(201).json({
         status: 201,
         success: true,
-        message: 'Application received. Welcome to the Canopy early-testers pool.',
+        message: 'Application received. Welcome to the Zupra early-testers pool.',
         recordId: record._id,
       });
     }
@@ -74,7 +74,7 @@ export async function submitFeedback(req, res, next) {
       return res.status(201).json({
         status: 201,
         success: true,
-        message: 'Feedback received. Thank you for helping improve Canopy Engine.',
+        message: 'Feedback received. Thank you for helping improve Zupra Engine.',
         recordId: record._id,
       });
     }

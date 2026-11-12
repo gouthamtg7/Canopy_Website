@@ -1,8 +1,8 @@
 # Third-Party Notices
 
-# Canopy Website - Third-Party Notices & Licenses
+# Zupra Website - Third-Party Notices & Licenses
 
-This document records the third-party open-source software libraries and tools used in the Canopy marketing and documentation platform (`C:\Canopy_Website`). Every dependency adheres strictly to permissive open-source licenses (MIT, Apache-2.0, BSD-2/3-Clause, or ISC).
+This document records the third-party open-source software libraries and tools used in the Zupra marketing and documentation platform. Every dependency adheres strictly to permissive open-source licenses (MIT, Apache-2.0, BSD-2/3-Clause, or ISC).
 
 ---
 

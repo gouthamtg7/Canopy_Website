@@ -1,0 +1,11 @@
+{
+  "note": "Add YouTube videos here. Each needs a YouTube id, the question it answers, and its length. The site shows them in this order.",
+  "videos": [],
+  "planned": [
+    "What does it show me in the first five minutes?",
+    "How do I check what breaks before I change a function?",
+    "How does Ask AI use my own Claude Code login?",
+    "How do I watch my agent work in Live?",
+    "Where do I review what the agent changed?"
+  ]
+}

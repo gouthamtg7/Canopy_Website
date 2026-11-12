@@ -13,7 +13,7 @@ async function startServer() {
   await connectDB();
 
   server = app.listen(PORT, () => {
-    console.log(`[Server] Canopy API server active on http://localhost:${PORT}`);
+    console.log(`[Server] Zupra API server active on http://localhost:${PORT}`);
   });
 
   const shutdown = async (signal) => {

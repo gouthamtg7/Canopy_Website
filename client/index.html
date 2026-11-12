@@ -1,35 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Canopy - Understand any JS/TS codebase as a map of how it works</title>
-    <meta name="description" content="Local-first static analysis engine using Tree-sitter to convert JavaScript and TypeScript repositories into interactive architectural maps with zero code uploads." />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563EB' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='3'/><path d='M12 3v6'/><path d='M12 15v6'/><path d='m4.93 4.93 4.24 4.24'/><path d='m14.83 14.83 4.24 4.24'/><path d='M3 12h6'/><path d='M15 12h6'/><path d='m4.93 19.07 4.24-4.24'/><path d='m14.83 9.17 4.24-4.24'/></svg>" />
-    
-    <!-- Open Graph & Twitter -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Canopy - Codebase Map Engine for JS/TS" />
-    <meta property="og:description" content="Understand any JS/TS codebase as a map of how it works. Local Tree-sitter static analysis, verified benchmarks, and MCP server integration." />
-    <meta property="og:url" content="https://canopy-engine.dev" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Canopy - Codebase Map Engine for JS/TS" />
-    <meta name="twitter:description" content="Understand any JS/TS codebase as a map of how it works. Zero code uploads." />
+    <title>%BRAND_TITLE%</title>
+    <meta name="description" content="%BRAND_DESCRIPTION%" />
+    <link rel="canonical" href="%BRAND_URL%/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F5F1E6" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12110E" />
 
-    <!-- Theme initialization script (prevents flash of unstyled theme) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="%BRAND_NAME%" />
+    <meta property="og:title" content="%BRAND_TITLE%" />
+    <meta property="og:description" content="%BRAND_DESCRIPTION%" />
+    <meta property="og:url" content="%BRAND_URL%/" />
+    <meta property="og:image" content="%BRAND_URL%/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="%BRAND_NAME%: Understand it. Change it. Know what changed." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="%BRAND_TITLE%" />
+    <meta name="twitter:description" content="%BRAND_DESCRIPTION%" />
+    <meta name="twitter:image" content="%BRAND_URL%/og.png" />
+    <script type="application/ld+json">%BRAND_JSONLD%</script>
+
+    <!-- Sets the theme class before paint (no flash). -->
     <script src="/theme.js"></script>
-    <script type="speculationrules">
-      {
-        "prerender": [
-          {
-            "where": { "href_matches": "^/" },
-            "eagerness": "moderate"
-          }
-        ]
-      }
-    </script>
   </head>
-  <body class="bg-paper-light dark:bg-paper-dark text-ink-light dark:text-ink-dark antialiased transition-colors duration-200">
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

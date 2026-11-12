@@ -1,13 +1,13 @@
 ---
 title: Ask AI
-description: Use Claude Code and MCP with your own login to query a Canopy map.
+description: Use Claude Code and MCP with your own login to query a Zupra map.
 slug: ask-ai
 order: 4
 ---
 
 # Ask AI
 
-Ask AI runs your own AI tool under your own login. Claude Code is the supported provider; other providers are not yet supported. Canopy does not ship AI code edits.
+Ask AI runs your own AI tool under your own login. Claude Code is the supported provider; other providers are not yet supported. Zupra does not ship AI code edits.
 
 ## MCP
 
@@ -25,4 +25,4 @@ Claude Code can query indexed symbols, upstream callers, downstream calls, workf
 
 ## Privacy
 
-Canopy does not send source code anywhere. Ask AI sends requests through the user's own Claude Code login and provider configuration.
+Zupra does not send source code anywhere. Ask AI sends requests through the user's own Claude Code login and provider configuration.
